@@ -13,20 +13,24 @@ SOURCE_FORMAT='markdown$\
 +smart$\
 +fenced_divs$\
 +fenced_code_attributes$\
-+tex_math_single_backslash'
++tex_math_dollars'
 
-FILTERS=./listing.py
+FILTERS=./fragile.py \
+	./listing.py
 
 PANDOC_FLAGS =\
 	-f $(SOURCE_FORMAT) \
 	$(patsubst %,--filter %, $(FILTERS)) \
 	-t beamer \
-	--no-highlight
+	--no-highlight \
+	-V colorlinks=true \
+	-V linkcolor=blue \
+	-V links-as-notes=true
 
 	# --toc \
 	# --slide-level 1 \
 
-PDF_ENGINE = lualatex
+PDF_ENGINE = xelatex
 PANDOCVERSIONGTEQ2 := $(shell expr `pandoc --version | grep ^pandoc | sed 's/^.* //g' | cut -f1 -d.` \>= 2)
 LATEX_FLAGS += -pdflatex=$(PDF_ENGINE) \
 							 -shell-escape

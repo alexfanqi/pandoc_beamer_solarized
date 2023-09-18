@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-Filter to wrap Pandoc's CodeBlocks into minted blocks when using latex.
+Filter to wrap Pandoc's CodeBlocks into listings blocks when using latex.
 Pandoc's `fence_code_attributes` can be used to provide:
 
 - the language (first class)
